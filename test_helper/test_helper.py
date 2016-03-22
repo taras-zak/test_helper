@@ -20,11 +20,11 @@ class Test(object):
     cls.private = True
 
   @classmethod
-  def assertTrue(cls, result, msg=""):
+  def assertTrue(cls, result, msg="", msg_success=""):
     cls.numTests += 1
     if result == True:
       cls.passed += 1
-      print "1 test passed."
+      print "1 test passed. " + msg_success
     else:
       print "1 test failed. " + msg
       if cls.failFast:
@@ -34,12 +34,12 @@ class Test(object):
           raise TestFailure(msg)
 
   @classmethod
-  def assertEquals(cls, var, val, msg=""):
-    cls.assertTrue(var == val, msg)
+  def assertEquals(cls, var, val, msg="", msg_success=""):
+    cls.assertTrue(var == val, msg, msg_success)
 
   @classmethod
-  def assertEqualsHashed(cls, var, hashed_val, msg=""):
-    cls.assertEquals(cls._hash(var), hashed_val, msg)
+  def assertEqualsHashed(cls, var, hashed_val, msg="", msg_success=""):
+    cls.assertEquals(cls._hash(var), hashed_val, msg, msg_success)
 
   @classmethod
   def printStats(cls):
